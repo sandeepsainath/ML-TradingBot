@@ -1,3 +1,10 @@
+"""
+Account class used to store liquid balance and market value of session.
+The class integrates with the trade log class in order to check market value.
+"""
+import trade_log as tl
+
+
 class Account:
     def __init__(self, cash, trade_log):
         self.cash = cash
