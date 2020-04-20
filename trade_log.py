@@ -28,11 +28,11 @@ class TradeLog:
             'price',
             'num_shares',
             'cost_basis'})
+
         self.portfolio = pd.DataFrame(columns={
             'ticker',
             'num_shares',
-            'current_price'
-        })
+            'current_price'})
 
     # Trading
     def trade(self, acnt, ticker, time, date, action, price, num_shares):
@@ -49,22 +49,17 @@ class TradeLog:
             - self.num_shares:
         '''
         cost_basis = price*num_shares
+
         if action == "buy":
             acnt.update(cost_basis, "buy")
 
         if action == "sell":
             acnt.update(cost_basis, "sell")
 
-        self.df['ticker'] = ticker
-        self.df['time'] = time
-        self.df['date'] = date
-        self.df['action'] = action
-        self.df['price'] = price
-        self.df['num_shares'] = num_shares
-        self.df['cost_basis'] = cost_basis
+        self.df.append(pd.Series(ticker, time, date, action, price, num_shares, index=df.columns),
+                      ignore_index=True))
 
     # End of Run
-
     def save_to_csv(self):
-        ```Saves our trade log DataFrame to a csv file. ```
-        self.df.to_csv()
+        '''Saves our trade log DataFrame to a csv file.'''
+        self.df.to_csv("{}.csv".format(self.name))
