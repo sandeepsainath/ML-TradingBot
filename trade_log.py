@@ -2,10 +2,10 @@
 Trade log class stores all trades on a CSV file and periodically updates them.
 It integrates with account class in order to update market value.
 """
-import account
+from account import Account
 
 
-class Trade_Log:
+class TradeLog:
     def __init__(self, instance_name):
         self.name = instance_name
         # initiate CSV file with name of instance
@@ -20,5 +20,6 @@ class Trade_Log:
         if action == "sell":
             acnt.update(cost_basis, "sell")
             pass
+
         # store ticker, time, etc to CSV file
         pass
