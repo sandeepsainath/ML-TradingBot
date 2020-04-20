@@ -20,7 +20,7 @@ class TradeLog:
             - self.portfolio: DataFrame representing our current portfolio
         '''
         self.name = instance_name
-        self.df = pd.DataFrame(columns={
+        self.trade_log = pd.DataFrame(columns={
             'ticker',
             'time',
             'date',
@@ -28,8 +28,8 @@ class TradeLog:
             'price',
             'num_shares',
             'cost_basis'})
-        self.df = self.df[['ticker', 'time', 'date',
-                                     'action', 'price', 'num_shares', 'cost_basis']]
+        self.trade_log = self.trade_log[['ticker', 'time', 'date',
+                                         'action', 'price', 'num_shares', 'cost_basis']]
         self.portfolio = pd.DataFrame(columns={
             'ticker',
             'num_shares',
@@ -58,8 +58,8 @@ class TradeLog:
         if action == "sell":
             acnt.update(cost_basis, "sell")
 
-        self.df = self.df.append(pd.Series([ticker, time, date, action, price, num_shares, cost_basis], index=self.df.columns),
-                                 ignore_index=True)
+        self.trade_log = self.trade_log.append(pd.Series([ticker, time, date, action, price, num_shares, cost_basis], index=self.trade_log.columns),
+                                               ignore_index=True)
 
         self.update_portfolio(ticker, num_shares)
 
@@ -99,4 +99,4 @@ class TradeLog:
     # End of Run
     def save_to_csv(self):
         '''Saves our trade log DataFrame to a csv file.'''
-        self.df.to_csv("{}.csv".format(self.name))
+        self.trade_log.to_csv("{}.csv".format(self.name))
