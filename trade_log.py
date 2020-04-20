@@ -28,11 +28,13 @@ class TradeLog:
             'price',
             'num_shares',
             'cost_basis'})
-
+        self.df = self.df[['ticker', 'time', 'date',
+                                     'action', 'price', 'num_shares', 'cost_basis']]
         self.portfolio = pd.DataFrame(columns={
             'ticker',
             'num_shares',
             'current_price'})
+        self.portfolio = self.portfolio[['ticker', 'num_shares', 'current_price']]
 
     # Trading
     def trade(self, acnt, ticker, time, date, action, price, num_shares):
@@ -56,10 +58,10 @@ class TradeLog:
         if action == "sell":
             acnt.update(cost_basis, "sell")
 
-        self.df.append(pd.Series(ticker, time, date, action, price, num_shares, index=self.df.columns),
-                       ignore_index=True)
+        self.df = self.df.append(pd.Series([ticker, time, date, action, price, num_shares, cost_basis], index=self.df.columns),
+                                 ignore_index=True)
 
-        update_portfolio(ticker, num_shares)
+        self.update_portfolio(ticker, num_shares)
 
     def update_portfolio(self, ticker, num_shares):
         '''
@@ -74,21 +76,25 @@ class TradeLog:
             - num_shares: Number of shares bought/sold in the trade
         '''
         if ticker not in self.portfolio['ticker'].unique():
-            self.portfolio.append(pd.Series(ticker, num_shares, current_price, index=self.portfolio.columns),
-                                  ignore_index=True)
-        else:
-            security = self.portfolio[self.portfolio['ticker'] == ticker]
-            security['num_shares'] += num_shares
-            pull_current_price(ticker)
+            ticker_price = self.update_current_price(ticker)
+            self.portfolio = self.portfolio.append(pd.Series([ticker, num_shares, ticker_price], index=self.portfolio.columns),
+                                                   ignore_index=True)
 
-    def pull_current_price(self, ticker):
+        else:
+            self.portfolio.set_index('ticker', inplace=True)
+            self.portfolio.at[ticker, 'num_shares'] += num_shares
+            self.portfolio.at[ticker, 'current_price'] = self.update_current_price(ticker)
+            self.portfolio.set_index(inplace=True)
+
+    def update_current_price(self, ticker):
         '''
         Pulls the latest price for a security from the Alpha Vantage API.
 
         Parameters:
             - ticker: Ticker of the security
         '''
-        pass  # Pull current_price from API, update self.portfolio
+        return 100
+        # pass  # Pull current_price from API, update self.portfolio
 
     # End of Run
     def save_to_csv(self):
