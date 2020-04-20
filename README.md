@@ -13,7 +13,7 @@ This bot utilizes technical analysis strategies to decide if a security is worth
      * VWAP, etc
 - __Simulated Trades__
      * Method of executing and storing "trades" on an accessible CSV file
-     * Profit/Loss Calculation on simulated trades
+     * Profit/Loss calculation on simulated trades
 - __Derivatives__
      * Derivative pricing modeling and trading
 - __Deployable__
