@@ -46,7 +46,7 @@ class TradeLog:
             - self.date: Date of trade
             - self.action:
             - self.price:
-            - self.num_shares:
+            - self.num_shares: Positive if bought, negative if sold
         '''
         cost_basis = price*num_shares
 
@@ -56,10 +56,30 @@ class TradeLog:
         if action == "sell":
             acnt.update(cost_basis, "sell")
 
-        self.df.append(pd.Series(ticker, time, date, action, price, num_shares, index=df.columns),
-                      ignore_index=True))
+        self.df.append(pd.Series(ticker, time, date, action, price, num_shares, index=self.df.columns),
+                       ignore_index=True)
+
+        update_portfolio(ticker, num_shares, current_price)
+
+    def update_portfolio(ticker, num_shares, current_price):
+        '''
+        Updates the portfolio.
+
+        Parameters:
+            - ticker: Ticker of the stock traded
+            - num_shares: Number of shares bought/sold in the trade
+            - current_price:
+        '''
+        if ticker not in self.portfolio['ticker'].unique():
+            self.portfolio.append(pd.Series(ticker, num_shares, current_price, index=self.portfolio.columns),
+                                  ignore_index=True)
+        else:
+            security = self.portfolio[self.portfolio['ticker'] == ticker]
+            security['num_shares'] += num_shares
+            pass  # Pull current_price from API
 
     # End of Run
+
     def save_to_csv(self):
         '''Saves our trade log DataFrame to a csv file.'''
         self.df.to_csv("{}.csv".format(self.name))
