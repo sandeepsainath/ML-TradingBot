@@ -1,6 +1,6 @@
 # Equity & Options Trading Bot
 
-This bot utilizes technical analysis strategies and then executes simulated trades if the security is worth purchasing, following an algorithm developed by the authors. The bot is also capable of options pricing modeling using the Black-Scholes price model.
+This bot utilizes technical analysis strategies to decide if the security is worth purchasing and then executes simulated trades, by virtue of an algorithm developed by the authors. The bot is also capable of options pricing modeling using the Black-Scholes price model.
 
 ## Features
 
