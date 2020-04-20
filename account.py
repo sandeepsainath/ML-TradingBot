@@ -2,7 +2,7 @@
 Account class used to store liquid balance and market value of session.
 The class integrates with the trade log class in order to check market value.
 """
-from trade_log import Trade_Log as tl
+# from trade_log import TradeLog as tl
 
 
 class Account:
