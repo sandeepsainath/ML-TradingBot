@@ -15,7 +15,9 @@ class TradeLog:
             - instance_name: The name of our trading sessions
 
         Class attributes:
-            - self.name:
+            - self.name: Name of our trading sessions
+            - self.df: DataFrame representing our successful trades
+            - self.portfolio: DataFrame representing our current portfolio
         '''
         self.name = instance_name
         self.df = pd.DataFrame(columns={
@@ -34,14 +36,25 @@ class TradeLog:
 
     # Trading
     def trade(self, acnt, ticker, time, date, action, price, num_shares):
+        '''
+        Runs our trading session and stores executed trades in the trade log.
+
+        Parameters:
+            - self.acnt: Account that we are using to trade with
+            - self.ticker: Ticker of the stock being traded
+            - self.time: Time of trade
+            - self.date: Date of trade
+            - self.action:
+            - self.price:
+            - self.num_shares:
+        '''
         cost_basis = price*num_shares
         if action == "buy":
             acnt.update(cost_basis, "buy")
-            pass
+
         if action == "sell":
             acnt.update(cost_basis, "sell")
-            pass
-        # store ticker, time, etc to CSV file
+
         self.df['ticker'] = ticker
         self.df['time'] = time
         self.df['date'] = date
@@ -53,4 +66,5 @@ class TradeLog:
     # End of Run
 
     def save_to_csv(self):
+        ```Saves our trade log DataFrame to a csv file. ```
         self.df.to_csv()
