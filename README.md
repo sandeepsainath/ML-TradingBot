@@ -20,4 +20,5 @@ This bot utilizes technical analysis strategies to decide if a security is worth
      * The bot is designed to be deployed onto the cloud for long runtimes
 
 ## License
+By: Vignesh Sella & Sandeep Sainath
 [MIT](https://choosealicense.com/licenses/mit/)
