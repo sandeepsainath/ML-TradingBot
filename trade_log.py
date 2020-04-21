@@ -2,7 +2,7 @@
 Trade log class stores all trades on a CSV file and periodically updates them.
 It integrates with account class in order to update market value.
 """
-from account import Account
+# from account import Account
 import pandas as pd
 
 
