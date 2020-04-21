@@ -109,5 +109,5 @@ class TradeLog:
 
     # End of Run
     def save_to_csv(self):
-        '''Saves our trade log DataFrame to a csv file.'''
+        # Saves our trade log DataFrame to a csv file.
         self.trade_log.to_csv("{}.csv".format(self.name))
