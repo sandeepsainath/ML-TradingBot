@@ -33,8 +33,9 @@ class TradeLog:
         self.portfolio = pd.DataFrame(columns={
             'ticker',
             'num_shares',
-            'current_price'})
-        self.portfolio = self.portfolio[['ticker', 'num_shares', 'current_price']]
+            'current_price',
+            'market_value'})
+        self.portfolio = self.portfolio[['ticker', 'num_shares', 'current_price', 'market_value']]
 
     # Trading
     def trade(self, acnt, ticker, time, date, action, price, num_shares):
@@ -76,14 +77,15 @@ class TradeLog:
             - num_shares: Number of shares bought/sold in the trade
         '''
         if ticker not in self.portfolio['ticker'].unique():
-            ticker_price = self.update_current_price(ticker)
-            self.portfolio = self.portfolio.append(pd.Series([ticker, num_shares, ticker_price], index=self.portfolio.columns),
+            ticker_price = self.update_current_price(ticker) # need to complete that func.
+            self.portfolio = self.portfolio.append(pd.Series([ticker, num_shares, ticker_price, num_shares*ticker_price], index=self.portfolio.columns),
                                                    ignore_index=True)
 
         else:
             self.portfolio.set_index('ticker', inplace=True)
             self.portfolio.at[ticker, 'num_shares'] += num_shares
             self.portfolio.at[ticker, 'current_price'] = self.update_current_price(ticker)
+            self.portfolio.at[ticker, 'market_value'] = num_shares*self.update_current_price(ticker)
             self.portfolio.set_index(inplace=True)
 
     def update_current_price(self, ticker):
@@ -93,8 +95,17 @@ class TradeLog:
         Parameters:
             - ticker: Ticker of the security
         '''
+        pass # Pull current_price from API, update self.portfolio
         return 100
-        # pass  # Pull current_price from API, update self.portfolio
+
+    # Accessors
+    def portfolio_to_value(self):
+        # for ind in df.index:
+        # print(df['Name'][ind], df['Stream'][ind])
+        value = 0
+        for i in self.portfolio.index:
+            value += self.portfolio['num_shares'][i]*self.portfolio['current_price'][i]
+        return value
 
     # End of Run
     def save_to_csv(self):
