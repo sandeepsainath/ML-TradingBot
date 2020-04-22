@@ -19,7 +19,8 @@ API_KEY = "JLF3VYO6W156F6WT"
 account = Account(1000, trade_log)
 
 ts = TimeSeries(key=API_KEY, output_format='pandas')
-data_ts, meta_ts = ts.get_intraday(symbol='ticker', interval='1min', outputsize='full')
+data_ts, meta_ts = ts.get_intraday(symbol='ticker', interval='1min', \
+                                   outputsize='full')
 
 ti = TechIndicators(key=API_KEY, output_format='pandas')
 period = 60
