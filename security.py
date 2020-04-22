@@ -1,6 +1,6 @@
 """
 Securities class is used to store ownership status, buy or sell status, and
-data pulled from Vantage API for each security. 
+data pulled from Vantage API for each security.
 """
 
 import pandas as pd
