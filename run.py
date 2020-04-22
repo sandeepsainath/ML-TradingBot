@@ -3,7 +3,7 @@ The actual bot.
 """
 from account import Account
 from trade_log import TradeLog
-# from security import Security
+from security import Security
 
 import requests
 import pandas as pd
