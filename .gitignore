@@ -3,3 +3,4 @@
 *.git
 *.csv
 *.github
+*__pycache__
