@@ -25,15 +25,15 @@ class Account:
         self.market_val = market_value
         pass
 
-    def update(self, amount, action):
+    def update(self, amount, action, market_value):
         if action == "buy":
             if self.cash - amount < 0:
                 raise Exception("Account's cash balance cannot go negative")
             self.cash -= amount
-            self.set_market_value()
+            self.set_market_value(market_value)
         if action == "sell":
             self.cash += amount
-            self.set_market_value()
+            self.set_market_value(market_value)
 
     # Status
     def solvent(self):

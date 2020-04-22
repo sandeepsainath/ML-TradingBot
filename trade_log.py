@@ -54,10 +54,12 @@ class TradeLog:
         cost_basis = price*num_shares
 
         if action == "buy":
-            acnt.update(cost_basis, "buy")
+            market_val = self.portfolio_to_value()
+            acnt.update(cost_basis, "buy", market_val)
 
         if action == "sell":
-            acnt.update(cost_basis, "sell")
+            market_val = self.portfolio_to_value()
+            acnt.update(cost_basis, "sell", market_val)
 
         self.trade_log = self.trade_log.append(pd.Series([ticker, time, date, action, price, num_shares, cost_basis], index=self.trade_log.columns),
                                                ignore_index=True)
@@ -77,7 +79,7 @@ class TradeLog:
             - num_shares: Number of shares bought/sold in the trade
         '''
         if ticker not in self.portfolio['ticker'].unique():
-            ticker_price = self.update_current_price(ticker) # need to complete that func.
+            ticker_price = self.update_current_price(ticker)  # need to complete that func.
             self.portfolio = self.portfolio.append(pd.Series([ticker, num_shares, ticker_price, num_shares*ticker_price], index=self.portfolio.columns),
                                                    ignore_index=True)
 
@@ -95,7 +97,7 @@ class TradeLog:
         Parameters:
             - ticker: Ticker of the security
         '''
-        pass # Pull current_price from API, update self.portfolio
+        pass  # Pull current_price from API, update self.portfolio
         return 100
 
     # Accessors
