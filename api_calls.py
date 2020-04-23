@@ -66,7 +66,7 @@ def pull_data_time_series(function, symbol, interval=None, output_size="full", d
     data = pd.DataFrame.from_dict(
         response_json[header], orient='index').sort_index(axis=1)
 
-    #data.index = data.index.astype('datetime')
+    # data.index = data.index.astype('datetime')
 
     return data
 
