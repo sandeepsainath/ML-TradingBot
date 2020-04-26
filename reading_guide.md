@@ -14,7 +14,7 @@
 4. **Chp 11: Trend Analysis (pg. 206 - pg. 221)**
     - Charting basics
     - Scales
-5. **Chp 12: Trends - The Basics **
+5. **Chp 12: Trends - The Basics**
     - Basis of trend analysis (pg. 223 - pg. 226)
     - How to determine a trend (pg. 227 - pg. 237)
 6. **Chp 13: Breakouts (pg. 255 - pg. 273)**
