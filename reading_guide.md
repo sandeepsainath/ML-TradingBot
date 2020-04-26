@@ -1,4 +1,5 @@
-All page numbers are in-book page numbers, not PDF page numbers.
+# Reading Guide
+###### All page numbers are in-book page numbers, not PDF page numbers.
 
 1. Chp 1: Intro to Technical Analysis (pg. 3 - pg. 7)
     - General intro
