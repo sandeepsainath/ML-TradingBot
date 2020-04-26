@@ -38,4 +38,4 @@
     - Risk and Money Management (pg. 560 - pg. 561)
     - Money Management Risks/Strategies (pg. 562 - pg. 576)
     - Portfolio Management (pg. 577 - pg. 578)
-Total Pages = 146
+> Total Pages = 146
