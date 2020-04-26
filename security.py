@@ -8,8 +8,8 @@ import pandas as pd
 
 class Security:
     def __init__(self, ticker):
-        self.ownership = False
-        self.status = None
+        self.ownership = False  # Owned or not (True or False)
+        self.status = None  # Buy or sell
         self.data = pd.DataFrame(columns={'Open',
                                           'High',
                                           'Low',
