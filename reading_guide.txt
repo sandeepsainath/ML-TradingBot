@@ -1,0 +1,16 @@
+All page numbers are in-book page numbers, not PDF page numbers.
+
+1. Chp 1: Intro to Technical Analysis (pg. 3 - pg. 7)
+    - General intro
+    - What is technical analysis
+    - What does this book cover
+2. Chp 5: Types of Contracts (pg. 59 - pg. 66)
+    - What are the different types or securities sold
+    - Financial derivatives
+3. Chp 8: Measuring Market Strength (pg. 131 - pg. 139)
+    - Divergence, oscillators, strength indices
+    - *May need to read more*
+4. Chp 11: Trend Analysis (pg. 206 - pg. 221)
+    - Charting basics
+    - Scales
+5. 
