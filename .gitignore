@@ -4,3 +4,4 @@
 *.csv
 *.github
 *__pycache__
+*.DS_Store
