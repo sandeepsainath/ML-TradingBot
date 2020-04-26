@@ -35,7 +35,7 @@ def pull_data_time_series(function, symbol, interval=None, output_size="full", d
 
     if interval == None:
         if function in ['TIME_SERIES_DAILY', 'TIME_SERIES_DAILY_ADJUSTED']:
-            data = {"function": function,
+            data = {"function": function,w
                     "symbol": symbol,
                     "outputsize": output_size,
                     "datatype": data_type,
@@ -86,6 +86,7 @@ def pull_data_technical_indicators(function, symbol, interval='1min', time_perio
         - output_size: Size of time series outputted. Can choose between "full" and "compact" (returns only the latest 100 data points).
         - data_type: Type of data output. Can choose between "json" and "csv".
     '''
+
     if function in ['SMA', 'EMA']:
         data = {"function": function,
                 "symbol": symbol,
