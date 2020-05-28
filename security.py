@@ -5,6 +5,7 @@ data pulled from Vantage API for each security.
 
 import pandas as pd
 
+
 class Security:
     def __init__(self, ticker):
         '''
