@@ -1,0 +1,32 @@
+digraph Tree {
+node [shape=box] ;
+0 [label="Earnings_Yield <= -0.016\nmse = 0.047\nsamples = 514777\nvalue = 0.086"] ;
+1 [label="Asset_Turnover <= 0.439\nmse = 0.087\nsamples = 70543\nvalue = -0.004"] ;
+0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
+2 [label="P/FCF <= -2.933\nmse = 0.085\nsamples = 24764\nvalue = -0.08"] ;
+1 -> 2 ;
+3 [label="mse = 0.079\nsamples = 14275\nvalue = -0.031"] ;
+2 -> 3 ;
+4 [label="mse = 0.086\nsamples = 10489\nvalue = -0.146"] ;
+2 -> 4 ;
+5 [label="Current_Ratio <= 4.458\nmse = 0.083\nsamples = 45779\nvalue = 0.036"] ;
+1 -> 5 ;
+6 [label="mse = 0.083\nsamples = 40974\nvalue = 0.019"] ;
+5 -> 6 ;
+7 [label="mse = 0.057\nsamples = 4805\nvalue = 0.188"] ;
+5 -> 7 ;
+8 [label="P/FCF <= 5.512\nmse = 0.039\nsamples = 444234\nvalue = 0.1"] ;
+0 -> 8 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+9 [label="Current_Ratio <= 4.378\nmse = 0.059\nsamples = 73452\nvalue = 0.048"] ;
+8 -> 9 ;
+10 [label="mse = 0.056\nsamples = 67517\nvalue = 0.06"] ;
+9 -> 10 ;
+11 [label="mse = 0.077\nsamples = 5935\nvalue = -0.088"] ;
+9 -> 11 ;
+12 [label="CapEx_/_(Depr_+_Amor) <= 1.212\nmse = 0.034\nsamples = 370782\nvalue = 0.11"] ;
+8 -> 12 ;
+13 [label="mse = 0.033\nsamples = 258456\nvalue = 0.122"] ;
+12 -> 13 ;
+14 [label="mse = 0.036\nsamples = 112326\nvalue = 0.084"] ;
+12 -> 14 ;
+}
