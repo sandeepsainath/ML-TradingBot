@@ -22,5 +22,5 @@ Our project’s objective is to develop and rigorously test a financial trading 
      * The bot is designed to be deployed onto the cloud for large data input and long runtimes
 
 ## License
-By: Vignesh Sella, Sandeep Sainath, Kevin Vasquez, and Kazim Syed
+By: Vignesh Sella, Sandeep Sainath, Kevin Vasquez, and Zeeshan Kunnummal
 [MIT](https://choosealicense.com/licenses/mit/)
