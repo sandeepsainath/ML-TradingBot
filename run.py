@@ -13,7 +13,7 @@ acnt = Account(balance)
 log = TradeLog('test2')
 
 # Insert tickers to be traded
-tickers = ['SPY']
+tickers = ['PEE']
 
 # (Set/pick trading strategy)
 
