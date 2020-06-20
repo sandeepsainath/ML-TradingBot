@@ -19,7 +19,7 @@ tickers_AMEX = pd.read_csv('AMEX.csv')['Symbol']
 # Contains each API call's info
 main_dict = {}
 
-for ticker_list in [tickers_NASDAQ.iloc[0:10]]:#[tickers_NASDAQ, tickers_NYSE, tickers_AMEX]:
+for ticker_list in [tickers_NASDAQ, tickers_NYSE, tickers_AMEX]:
     for ticker in ticker_list:
         r = requests.get('https://finnhub.io/api/v1/stock/profile2?symbol={}&token=brn4ofnrh5r8ci141v0g'.format(ticker))
         try:
