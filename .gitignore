@@ -1,7 +1,6 @@
 *.pyc
 *.ipynb_checkpoints
 *.git
-*.csv
 *.github
 *__pycache__
 *.DS_Store
