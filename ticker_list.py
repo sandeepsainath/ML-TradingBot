@@ -19,7 +19,7 @@ tickers_AMEX = pd.read_csv('AMEX.csv')['Symbol']
 # Contains each API call's info
 main_dict = {}
 
-for ticker_list in tickers_NASDAQ.iloc[0:10]: #[tickers_NASDAQ, tickers_NYSE, tickers_AMEX]:
+for ticker_list in [tickers_NASDAQ, tickers_NYSE, tickers_AMEX]:
     for ticker in ticker_list:
         r = requests.get('https://finnhub.io/api/v1/stock/profile2?symbol={}&token=brn4ofnrh5r8ci141v0g'.format(ticker))
         try:
@@ -30,7 +30,11 @@ for ticker_list in tickers_NASDAQ.iloc[0:10]: #[tickers_NASDAQ, tickers_NYSE, ti
             r = requests.get('https://finnhub.io/api/v1/stock/profile2?symbol={}&token=brn4ofnrh5r8ci141v0g'.format(ticker))
             data = r.json()
 
-        main_dict[ticker] = r.json()
+        # If ticker info not present in API
+        if data == {}:
+            continue
+
+        main_dict[ticker] = data
 
         # Classifying each ticker by market cap
         if main_dict[ticker]['marketCapitalization'] > MEGA_CAP:
@@ -49,5 +53,5 @@ with open('TOTAL_US_STOCK_MARKET.csv', 'w') as csv_file:
     writer = csv.writer(csv_file)
     for ticker in main_dict:
        output = list(main_dict[ticker])
-       output.insert(0, ticker) # insert ticker name at 0th element
-       writer.writerow(output) # ['key', 1, 2, 3] not [['key'], [1, 2]]
+       output.insert(0, ticker)
+       writer.writerow(output)
