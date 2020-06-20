@@ -5,11 +5,11 @@ import time
 import csv
 
 # Capitalization minimum threshold values
-MEGA_CAP = 200*(10**9) # 200 B
-LARGE_CAP = 10**9 # 10 B
-MID_CAP = 2*(10**9) # 2 B
-SMALL_CAP = 300*(10**6) # 300 M
-MICRO_CAP = 50*(10**6) # 50 M
+MEGA_CAP = 200*(10**3) # 200 B
+LARGE_CAP = 10*(10**3) # 10 B
+MID_CAP = 2*(10**3) # 2 B
+SMALL_CAP = 300 # 300 M
+MICRO_CAP = 50 # 50 M
 
 # Ticker lists
 tickers_NASDAQ = pd.read_csv('NASDAQ.csv')['Symbol']
@@ -19,7 +19,7 @@ tickers_AMEX = pd.read_csv('AMEX.csv')['Symbol']
 # Contains each API call's info
 main_dict = {}
 
-for ticker_list in [tickers_NASDAQ, tickers_NYSE, tickers_AMEX]:
+for ticker_list in [tickers_NASDAQ.iloc[0:10]]:#[tickers_NASDAQ, tickers_NYSE, tickers_AMEX]:
     for ticker in ticker_list:
         r = requests.get('https://finnhub.io/api/v1/stock/profile2?symbol={}&token=brn4ofnrh5r8ci141v0g'.format(ticker))
         try:
@@ -51,7 +51,10 @@ for ticker_list in [tickers_NASDAQ, tickers_NYSE, tickers_AMEX]:
 # Convert dictionary to csv
 with open('TOTAL_US_STOCK_MARKET.csv', 'w') as csv_file:
     writer = csv.writer(csv_file)
+    columns = ["ticker", "name", "finnhubIndustry", "country",  "currency", "exchange", "ipo",
+               "marketCapitalization", "marketCapClass", "shareOutstanding"]
+    writer.writerow(columns)
+
     for ticker in main_dict:
-       output = list(main_dict[ticker])
-       output.insert(0, ticker)
+       output = [main_dict[ticker][col] for col in columns]
        writer.writerow(output)
