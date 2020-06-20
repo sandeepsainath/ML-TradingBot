@@ -19,19 +19,33 @@ tickers_AMEX = pd.read_csv('AMEX.csv')['Symbol']
 # Contains each API call's info
 main_dict = {}
 
-for ticker_list in [tickers_NASDAQ, tickers_NYSE, tickers_AMEX]:
+for ticker_list in [tickers_NASDAQ]: # tickers_NYSE, tickers_AMEX]:
     for ticker in ticker_list:
-        r = requests.get('https://finnhub.io/api/v1/stock/profile2?symbol={}&token=brn4ofnrh5r8ci141v0g'.format(ticker))
-        try:
-            data = r.json()
-        # 60 calls/min API limit reached
-        except json.decoder.JSONDecodeError:
-            time.sleep(50)
+        for i in range(60): # 60 tries, 1 second between, ensures we get earliest available API call
             r = requests.get('https://finnhub.io/api/v1/stock/profile2?symbol={}&token=brn4ofnrh5r8ci141v0g'.format(ticker))
-            data = r.json()
+            try:
+                data = r.json()
+                break
+            except json.decoder.JSONDecodeError:
+                time.sleep(1)
 
-        # If ticker info not present in API
-        if data == {}:
+        ### old code
+        # r = requests.get('https://finnhub.io/api/v1/stock/profile2?symbol={}&token=brn4ofnrh5r8ci141v0g'.format(ticker))
+        # try:
+            # data = r.json()
+        # 60 calls/min API limit reached
+        # except json.decoder.JSONDecodeError:
+
+            # time.sleep(60)
+            # r = requests.get('https://finnhub.io/api/v1/stock/profile2?symbol={}&token=brn4ofnrh5r8ci141v0g'.format(ticker))
+            # try:
+            #     data = r.json()
+            # except json.decoder.JSONDecodeError:
+            #     print('Failed to fetch data for ' + ticker + ', skipping...')
+            #     continue
+
+        # If API error or ticker info not present in API
+        if not data or data == {}:
             continue
 
         main_dict[ticker] = data
