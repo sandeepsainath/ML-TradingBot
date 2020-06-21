@@ -19,7 +19,7 @@ tickers_AMEX = pd.read_csv('AMEX.csv')['Symbol']
 # Contains each API call's info
 main_dict = {}
 
-for ticker_list in [tickers_NASDAQ]: # tickers_NYSE, tickers_AMEX]:
+for ticker_list in [tickers_NYSE, tickers_AMEX]: # tickers_NASDAQ already processed
     for ticker in ticker_list:
         for i in range(60): # 60 tries, 1 second between, ensures we get earliest available API call
             r = requests.get('https://finnhub.io/api/v1/stock/profile2?symbol={}&token=brn4ofnrh5r8ci141v0g'.format(ticker))
@@ -28,21 +28,6 @@ for ticker_list in [tickers_NASDAQ]: # tickers_NYSE, tickers_AMEX]:
                 break
             except json.decoder.JSONDecodeError:
                 time.sleep(1)
-
-        ### old code
-        # r = requests.get('https://finnhub.io/api/v1/stock/profile2?symbol={}&token=brn4ofnrh5r8ci141v0g'.format(ticker))
-        # try:
-            # data = r.json()
-        # 60 calls/min API limit reached
-        # except json.decoder.JSONDecodeError:
-
-            # time.sleep(60)
-            # r = requests.get('https://finnhub.io/api/v1/stock/profile2?symbol={}&token=brn4ofnrh5r8ci141v0g'.format(ticker))
-            # try:
-            #     data = r.json()
-            # except json.decoder.JSONDecodeError:
-            #     print('Failed to fetch data for ' + ticker + ', skipping...')
-            #     continue
 
         # If API error or ticker info not present in API
         if not data or data == {}:
@@ -62,8 +47,7 @@ for ticker_list in [tickers_NASDAQ]: # tickers_NYSE, tickers_AMEX]:
         else:
             main_dict[ticker]['marketCapClass'] = 'MICRO_CAP'
 
-# Convert dictionary to csv
-with open('TOTAL_US_STOCK_MARKET.csv', 'w') as csv_file:
+with open('TOTAL_US_STOCK_MARKET.csv', 'a') as csv_file:
     writer = csv.writer(csv_file)
     columns = ["ticker", "name", "finnhubIndustry", "country",  "currency", "exchange", "ipo",
                "marketCapitalization", "marketCapClass", "shareOutstanding"]
