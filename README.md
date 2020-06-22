@@ -5,7 +5,7 @@
 - Create a robust program that can run autonomously with error handling
 - Apply the bot to investing in order to generate a profit
 - Learn about financial risk management by incorporating risk management strategies into the bot's decision-making algorithm
-- Integrate machine learning algorithms for optimal trading strategies
+- Integrate machine learning and neural network algorithms for optimal trading strategies
 - Gain experience with performance analysis using back testing
 
 Our project’s objective is to develop and rigorously test a financial trading bot which can value invest in companies from a large cross section of the US market. The bot should be able to determine when to sell, should a position become overvalued or meets a stop-loss. Furthermore, the bot shall only purchase any one security up to a maximum percentage of the total portfolio. The bot will use an API to pull financial ratio data from any time period of any security and utilize this data to make an informed decision on whether or not to buy or sell a security.
@@ -15,6 +15,9 @@ Our project’s objective is to develop and rigorously test a financial trading 
 - __Portfolio Management__
      * Risk Management
      * Risk Analysis
+- __Machine Learning__
+     * Use a variety of ML models to understand market data and aid decision making process
+     * Use Tensorflow neural network models to process and pick winners among the total US stock market
 - __Simulated Trades__
      * Method of executing and storing "trades" on an accessible CSV file
      * Profit/Loss calculation on simulated trades
